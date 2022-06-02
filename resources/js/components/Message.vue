@@ -3,7 +3,9 @@
         <li class="list-group-item" :class="className">
         <slot></slot>
         </li>
-        <small class="badge float-right" :class="userNameFillColor">you</small>
+        <div :class="floatPositionMethod">
+        <small class="badge" :class="userNameFillColor">{{user}} at {{time}}</small>
+        </div>
     </div>
 
 </template>
@@ -11,7 +13,10 @@
 <script>
     export default {
         props : [
-            'color'
+            'color',
+            'user',
+            'position',
+            'time'
         ],
         computed:{
             className(){
@@ -19,6 +24,9 @@
             },
             userNameFillColor(){
                 return 'list-group-item-'+this.color;
+            },
+            floatPositionMethod(){
+                return 'float-'+this.position;
             }
         },
         mounted() {
